@@ -1,0 +1,47 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="masthead" style="background-image: url('@Model.imagePath')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>@Model.Name</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            @foreach (Post post in Model.Posts)
+            {
+                <div class="post-preview">
+                    <a asp-action="Post" asp-route-id=@post.Id>
+                        <h2 class="post-title">
+                            @post.title
+                        </h2>
+                        <h3 class="post-subtitle">
+                            @post.Subtitle
+                        </h3>
+                    </a>
+                    <p class="post-meta">
+                        Posted by
+                        <a href="#">@post.user.Email</a>
+                        on @post.creationTime
+                    </p>
+                </div>
+                <hr>
+            }
+            <div class="clearfix">
+                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
